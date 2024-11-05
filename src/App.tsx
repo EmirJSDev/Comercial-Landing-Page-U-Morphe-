@@ -2,25 +2,24 @@ import React from "react";
 import { createGlobalStyle } from "styled-components";
 import Header from "./layers/Header";
 import HeroSection from "./layers/sections/HeroSection";
+import AboutSection from "./layers/sections/AboutSection";
 import { Box } from "@mui/material";
 
-// Глобальный стиль с фоном внутри ограниченного контейнера
 const GlobalStyle = createGlobalStyle`
     html, body {
         margin: 0;
         padding: 0;
         width: 100%;
         font-family: Arial, sans-serif;
-        overflow-x: hidden; /* Убираем горизонтальную прокрутку */
+        overflow-x: hidden;
     }
 
     #root {
-        max-width: 1440px; /* Ограничение ширины для всего сайта */
-        margin: 0 auto; /* Центрирование */
-        background: linear-gradient(180deg, #FBE5E7 0%, #E5BFC8 50%, #A590C1 100%); /* Фон внутри контейнера */
+        max-width: 1440px;
+        margin: 0 auto;
+        background: linear-gradient(180deg, #FBE5E7 0%, #E5BFC8 50%, #A590C1 100%);
     }
 
-    /* Адаптивные размеры шрифтов */
     h1 {
         font-size: calc(2rem + 1vw);
     }
@@ -37,13 +36,11 @@ const GlobalStyle = createGlobalStyle`
         font-size: calc(1rem + 0.2vw);
     }
 
-    /* Адаптивные стили для изображений */
     img {
         max-width: 100%;
         height: auto;
     }
 
-    /* Адаптивные отступы для контейнеров */
     .container {
         padding: 20px;
 
@@ -72,6 +69,7 @@ const App: React.FC = () => {
       >
         <Header />
         <HeroSection />
+        <AboutSection />
       </Box>
     </>
   );
