@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "commonjs",
+    "jsx": "react-jsx",
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "newLine": "crlf"
+  },
+  "include": ["src", "src/**/*.tsx", "src/**/*.ts", "src/images.d.ts"],
+  "exclude": ["node_modules"]
+}
