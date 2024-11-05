@@ -3,6 +3,7 @@ import { createGlobalStyle } from "styled-components";
 import Header from "./layers/Header";
 import HeroSection from "./layers/sections/HeroSection";
 import AboutSection from "./layers/sections/AboutSection";
+import FeaturesSection from "./layers/sections/FeaturesSection"; // Import the FeaturesSection component
 import { Box } from "@mui/material";
 
 const GlobalStyle = createGlobalStyle`
@@ -70,6 +71,7 @@ const App: React.FC = () => {
         <Header />
         <HeroSection />
         <AboutSection />
+        <FeaturesSection /> {/* Add FeaturesSection here */}
       </Box>
     </>
   );
