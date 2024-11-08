@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   AppBar,
   Box,
   Button,
+  Divider,
+  Drawer,
   IconButton,
   Link,
+  List,
+  ListItem,
+  ListItemText,
   Toolbar,
   Typography,
   useMediaQuery,
@@ -13,11 +18,14 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SendIcon from "@mui/icons-material/Send";
 
 const Header: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isMediumScreen = useMediaQuery("(max-width:1200px)");
   const isSmallScreen = useMediaQuery("(max-width:925px)");
   const isBurgerMenu = useMediaQuery("(max-width:768px)");
   const isIconButton = useMediaQuery("(max-width:900px)");
   const isVerySmallScreen = useMediaQuery("(max-width:300px)");
+
+  const handleMenuToggle = () => setIsMenuOpen(!isMenuOpen);
 
   return (
     <AppBar
@@ -30,7 +38,7 @@ const Header: React.FC = () => {
         justifyContent: "center",
         padding: isMediumScreen ? "0 24px" : "0 156px",
         marginTop: "24px",
-        maxHeight: "72px",
+        minHeight: "72px",
       }}
     >
       <Toolbar
@@ -38,15 +46,13 @@ const Header: React.FC = () => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          width: "100%",
-          minHeight: "72px",
-          padding: 0,
         }}
       >
         {isBurgerMenu ? (
           <IconButton
             color="primary"
             aria-label="menu"
+            onClick={handleMenuToggle}
             sx={{
               fontSize: "24px",
               color: "#FF7F00",
@@ -195,6 +201,53 @@ const Header: React.FC = () => {
           </Button>
         )}
       </Toolbar>
+
+      <Drawer
+        anchor="left"
+        open={isMenuOpen}
+        onClose={handleMenuToggle}
+        sx={{
+          "& .MuiDrawer-paper": {
+            backgroundColor: "#e7b2b8",
+            padding: "20px",
+            width: "250px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "16px",
+            transition: "all 0.3s ease",
+          },
+        }}
+      >
+        <List>
+          {["О проекте", "Возможности", "Для кого", "Тарифы", "Контакты"].map(
+            (text, index) => (
+              <ListItem
+                key={index}
+                onClick={handleMenuToggle}
+                component="a"
+                href={`#${text.toLowerCase()}`}
+                sx={{
+                  borderRadius: "8px",
+                  "&:hover": {
+                    backgroundColor: "#ffdfef",
+                  },
+                }}
+              >
+                <ListItemText
+                  primary={text}
+                  primaryTypographyProps={{
+                    fontFamily: "Montserrat Alternates, sans-serif",
+                    fontSize: "16px",
+                    fontWeight: 500,
+                    color: "#FFFFFF", // белый цвет текста
+                  }}
+                />
+              </ListItem>
+            ),
+          )}
+        </List>
+        <Divider sx={{ marginY: "16px", backgroundColor: "#FFFFFF" }} />
+      </Drawer>
     </AppBar>
   );
 };

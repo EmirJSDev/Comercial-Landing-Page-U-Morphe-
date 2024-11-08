@@ -1,23 +1,23 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import styled from "@emotion/styled";
-import { ReactComponent as CalendarIcon } from "../../icons/CalendarToday.svg";
-import { ReactComponent as ChatIcon } from "../../icons/Chat.svg";
-import { ReactComponent as VideoIcon } from "../../icons/VideoCall.svg";
-import { ReactComponent as DesktopIcon } from "../../icons/DesktopWindows.svg";
-import { ReactComponent as AssignmentIcon } from "../../icons/Assignment.svg";
-import { ReactComponent as SecurityIcon } from "../../icons/Security.svg";
+import CalendarIcon from "../../../icons/CalendarToday.jpg";
+import ChatIcon from "../../../icons/Chat.jpg";
+import VideoIcon from "../../../icons/VideoCall.jpg";
+import DesktopIcon from "../../../icons/DesktopWindows.jpg";
+import AssignmentIcon from "../../../icons/Assignment.jpg";
+import SecurityIcon from "../../../icons/Security.jpg";
 
 const Container = styled(Box)`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 1440px;
-  height: 1080px;
-  margin: 0 auto;
+  justify-content: center;
   text-align: center;
   user-select: none;
+  max-width: 1440px;
+  padding-bottom: 192px;
 `;
 
 const Title = styled(Typography)`
@@ -41,26 +41,28 @@ const Subtitle = styled(Typography)`
   text-align: center;
 `;
 
-const GridContainer = styled(Box)`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+const FlexContainer = styled(Box)`
+  display: flex;
+  flex-wrap: wrap; /* Позволяет перенос карточек */
+  justify-content: center; /* Центровка карточек */
   gap: 24px;
   width: 100%;
-  max-width: 1200px;
-  justify-items: center;
+  align-items: center;
 `;
 
 const Card = styled(Box)`
-  max-width: 360px;
-  max-height: 432px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 calc(33.33% - 24px); /* 3 карточки в ряд */
+  max-width: 360px; /* Для ограничения размера карточки */
+  max-height: 390px;
   padding: 40px;
   border-radius: 24px;
   border: 1px solid #ddd;
   background: #f7eef6;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   text-align: center;
 `;
 
@@ -72,6 +74,7 @@ const IconContainer = styled(Box)`
   justify-content: center;
   background-color: #fdecef;
   border-radius: 24px;
+  overflow: hidden;
 `;
 
 const FeatureTitle = styled(Typography)`
@@ -79,15 +82,17 @@ const FeatureTitle = styled(Typography)`
   font-size: 20px;
   font-weight: 600;
   color: #3f2274;
+  margin-top: 16px;
 `;
 
 const FeatureDescription = styled(Typography)`
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   font-weight: 400;
-  line-height: 20px;
+  line-height: 21px;
   text-align: center;
   color: #4c2e88;
+  margin-top: 16px;
 `;
 
 const FeaturesSection: React.FC = () => {
@@ -95,10 +100,15 @@ const FeaturesSection: React.FC = () => {
     <Container>
       <Title>Функции и интеграции</Title>
       <Subtitle>Все задачи решаются в одном пространстве</Subtitle>
-      <GridContainer>
+      <FlexContainer>
         <Card>
           <IconContainer>
-            <CalendarIcon width="100%" height="100%" />
+            <img
+              src={CalendarIcon}
+              alt="Календарь"
+              width="100%"
+              height="100%"
+            />
           </IconContainer>
           <FeatureTitle>Календарь</FeatureTitle>
           <FeatureDescription>
@@ -108,7 +118,7 @@ const FeaturesSection: React.FC = () => {
         </Card>
         <Card>
           <IconContainer>
-            <ChatIcon width="100%" height="100%" />
+            <img src={ChatIcon} alt="Мессенджер" width="100%" height="100%" />
           </IconContainer>
           <FeatureTitle>Мессенджер</FeatureTitle>
           <FeatureDescription>
@@ -118,7 +128,12 @@ const FeaturesSection: React.FC = () => {
         </Card>
         <Card>
           <IconContainer>
-            <VideoIcon width="100%" height="100%" />
+            <img
+              src={VideoIcon}
+              alt="Видеоконференции"
+              width="100%"
+              height="100%"
+            />
           </IconContainer>
           <FeatureTitle>Видеоконференции</FeatureTitle>
           <FeatureDescription>
@@ -128,7 +143,12 @@ const FeaturesSection: React.FC = () => {
         </Card>
         <Card>
           <IconContainer>
-            <DesktopIcon width="100%" height="100%" />
+            <img
+              src={DesktopIcon}
+              alt="Виртуальный офис"
+              width="100%"
+              height="100%"
+            />
           </IconContainer>
           <FeatureTitle>Виртуальный офис</FeatureTitle>
           <FeatureDescription>
@@ -138,7 +158,12 @@ const FeaturesSection: React.FC = () => {
         </Card>
         <Card>
           <IconContainer>
-            <AssignmentIcon width="100%" height="100%" />
+            <img
+              src={AssignmentIcon}
+              alt="Планирование"
+              width="100%"
+              height="100%"
+            />
           </IconContainer>
           <FeatureTitle>Планирование</FeatureTitle>
           <FeatureDescription>
@@ -148,7 +173,12 @@ const FeaturesSection: React.FC = () => {
         </Card>
         <Card>
           <IconContainer>
-            <SecurityIcon width="100%" height="100%" />
+            <img
+              src={SecurityIcon}
+              alt="Система ролей"
+              width="100%"
+              height="100%"
+            />
           </IconContainer>
           <FeatureTitle>Система ролей</FeatureTitle>
           <FeatureDescription>
@@ -157,7 +187,7 @@ const FeaturesSection: React.FC = () => {
             контенту.
           </FeatureDescription>
         </Card>
-      </GridContainer>
+      </FlexContainer>
     </Container>
   );
 };

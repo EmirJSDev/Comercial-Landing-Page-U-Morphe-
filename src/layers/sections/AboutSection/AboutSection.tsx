@@ -1,19 +1,19 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import styled from "@emotion/styled";
-import BackgroundImage from "../../images/about-image.png";
-import DotImage from "../../images/about-image-dot.png";
+import BackgroundImage from "../../../images/about-image.png";
+import DotImage from "../../../images/about-image-dot.png";
 
 const Container = styled(Box)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  max-width: 1440px;
-  height: 768px;
+  min-width: 100%;
+  min-height: 768px;
   margin: 0 auto;
   text-align: center;
-  margin-bottom: 192px;
+  padding-bottom: 192px;
+  padding-top: 192px;
   user-select: none;
   position: relative;
 `;
@@ -34,7 +34,7 @@ const Subtitle = styled(Typography)`
   font-weight: 400;
   line-height: 31px;
   color: #6f4baf;
-  margin-top: 48px;
+  padding-top: 48px;
   text-align: left;
   user-select: none;
 `;
@@ -43,7 +43,7 @@ const ContentWrapper = styled(Box)`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-top: 98px;
+  padding-top: 98px;
   user-select: none;
 `;
 
@@ -77,21 +77,21 @@ const ImageBox = styled(Box)`
   background-size: contain;
   background-repeat: no-repeat;
   background-position: right;
-  width: 600px;
-  height: 600px;
+  min-width: 600px;
+  min-height: 600px;
   flex-shrink: 0;
   user-select: none;
 `;
 
 const DotImageBox = styled(Box)`
   position: absolute;
-  bottom: -250px;
+  bottom: 0;
   right: 0;
   background-image: url(${DotImage});
   background-size: contain;
   background-repeat: no-repeat;
-  width: 289px;
-  height: 289px;
+  min-width: 289px;
+  min-height: 289px;
   user-select: none;
 `;
 

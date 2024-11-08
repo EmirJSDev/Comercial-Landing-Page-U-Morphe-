@@ -1,9 +1,9 @@
 import React from "react";
 import { createGlobalStyle } from "styled-components";
-import Header from "./layers/Header";
-import HeroSection from "./layers/sections/HeroSection";
-import AboutSection from "./layers/sections/AboutSection";
-import FeaturesSection from "./layers/sections/FeaturesSection"; // Import the FeaturesSection component
+import Header from "./layers/Header/Header";
+import HeroSection from "./layers/sections/HeroSection/HeroSection";
+import AboutSection from "./layers/sections/AboutSection/AboutSection";
+import FeaturesSection from "./layers/sections/FeaturesSection/FeaturesSection"; // Import the FeaturesSection component
 import { Box } from "@mui/material";
 
 const GlobalStyle = createGlobalStyle`
@@ -16,7 +16,6 @@ const GlobalStyle = createGlobalStyle`
     }
 
     #root {
-        max-width: 1440px;
         margin: 0 auto;
         background: linear-gradient(180deg, #FBE5E7 0%, #E5BFC8 50%, #A590C1 100%);
     }
@@ -40,18 +39,6 @@ const GlobalStyle = createGlobalStyle`
     img {
         max-width: 100%;
         height: auto;
-    }
-
-    .container {
-        padding: 20px;
-
-        @media (min-width: 768px) {
-            padding: 30px;
-        }
-
-        @media (min-width: 1200px) {
-            padding: 50px;
-        }
     }
 `;
 

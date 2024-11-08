@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Button, Typography } from "@mui/material";
-import BackgroundHero from "../../images/BackgroundHero.png";
+import BackgroundHero from "../../../images/BackgroundHero.png";
 
 const HeroSection: React.FC = () => {
   return (
@@ -11,9 +11,7 @@ const HeroSection: React.FC = () => {
         alignItems: "center",
         justifyContent: "center",
         width: "100%",
-        maxWidth: "1440px",
-        height: "912px",
-        padding: "72px 0 0 0",
+        minHeight: "100vh",
         backgroundImage: `url(${BackgroundHero})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -22,7 +20,7 @@ const HeroSection: React.FC = () => {
         color: "#F7EEF6",
         margin: "0 auto",
         userSelect: "none",
-        marginBottom: "192px",
+        padding: "0 0 250px 0",
       }}
     >
       <Typography
