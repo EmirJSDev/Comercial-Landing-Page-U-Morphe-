@@ -42,7 +42,12 @@
       "prettier"
     ],
     "rules": {
-      "prettier/prettier": "error",
+      "prettier/prettier": [
+        "error",
+        {
+          "endOfLine": "crlf"
+        }
+      ],
       "no-console": "warn",
       "react/react-in-jsx-scope": "off",
       "react/prop-types": "off"

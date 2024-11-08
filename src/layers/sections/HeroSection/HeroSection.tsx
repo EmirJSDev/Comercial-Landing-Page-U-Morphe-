@@ -32,6 +32,7 @@ const HeroSection: React.FC = () => {
           fontWeight: 700,
           lineHeight: "93.6px",
           mb: 2,
+          paddingTop: "291px",
         }}
       >
         U - Morphe

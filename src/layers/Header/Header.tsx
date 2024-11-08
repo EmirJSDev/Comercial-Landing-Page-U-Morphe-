@@ -74,6 +74,7 @@ const Header: React.FC = () => {
                 color: "#FF7F00",
                 userSelect: "none",
                 marginLeft: isSmallScreen ? 0 : "auto",
+                whiteSpace: "nowrap",
               }}
             >
               U - Morphe
@@ -189,6 +190,7 @@ const Header: React.FC = () => {
               padding: "5px 20px",
               textTransform: "none",
               transition: "all 0.3s ease",
+              whiteSpace: "nowrap",
               "&:hover": {
                 backgroundColor: "#913E98",
                 color: "#fff",
