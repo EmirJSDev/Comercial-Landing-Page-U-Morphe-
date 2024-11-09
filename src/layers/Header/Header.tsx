@@ -72,6 +72,8 @@ const Header: React.FC = () => {
           padding: isMediumScreen ? "0 24px" : "0 156px",
           marginTop: "24px",
           minHeight: "72px",
+          boxShadow: "0px 4px 4px 0px #00000040",
+          backdropFilter: "blur(20px)",
         }}
       >
         <Toolbar

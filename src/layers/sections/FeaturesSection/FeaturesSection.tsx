@@ -107,9 +107,23 @@ const FeaturesSection: React.FC = () => {
               borderRadius: "24px",
               background: "#f7eef6",
               textAlign: "center",
+              minWidth: "360px",
+              minHeight: "390px",
               maxWidth: "360px",
               maxHeight: "390px",
               flex: "1 1 calc(33.33% - 24px)", // 3 карточки в ряд
+              "@media (max-width:1200px)": {
+                flex: "1 1 calc(50% - 24px)", // 2 карточки в ряд
+              },
+              "@media (max-width:768px)": {
+                flex: "1 1 100%", // 1 карточка в ряд
+              },
+              "@media (max-width:400px)": {
+                minWidth: "260px", // Уменьшены размеры для мобильных устройств
+                minHeight: "300px",
+                maxWidth: "260px",
+                maxHeight: "300px",
+              },
             }}
           >
             <Box
