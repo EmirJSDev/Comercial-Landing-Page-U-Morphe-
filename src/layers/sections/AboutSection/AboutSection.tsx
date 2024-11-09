@@ -1,119 +1,129 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
-import styled from "@emotion/styled";
+import { Box, Typography, useMediaQuery } from "@mui/material";
 import BackgroundImage from "../../../images/about-image.png";
-import DotImage from "../../../images/about-image-dot.png";
-
-const Container = styled(Box)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 100%;
-  min-height: 768px;
-  margin: 0 auto;
-  text-align: center;
-  padding-bottom: 192px;
-  padding-top: 192px;
-  user-select: none;
-  position: relative;
-`;
-
-const Title = styled(Typography)`
-  font-family: "Montserrat Alternates", sans-serif;
-  font-size: 48px;
-  font-weight: 600;
-  line-height: 62px;
-  color: #3f2274;
-  text-align: center;
-  user-select: none;
-`;
-
-const Subtitle = styled(Typography)`
-  font-family: "Montserrat Alternates", sans-serif;
-  font-size: 24px;
-  font-weight: 400;
-  line-height: 31px;
-  color: #6f4baf;
-  padding-top: 48px;
-  text-align: left;
-  user-select: none;
-`;
-
-const ContentWrapper = styled(Box)`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  padding-top: 98px;
-  user-select: none;
-`;
-
-const TextBox = styled(Box)`
-  max-width: 516px;
-  max-height: 528px;
-  background: #f7eef6b2;
-  border-radius: 24px;
-  box-shadow: 0 4px 4px 0 #00000040;
-  backdrop-filter: blur(4px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 157px;
-  padding: 48px;
-  user-select: none;
-`;
-
-const TextContent = styled(Typography)`
-  font-family: "Roboto", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 20px;
-  text-align: left;
-  color: #4c2e88;
-  user-select: none;
-`;
-
-const ImageBox = styled(Box)`
-  background-image: url(${BackgroundImage});
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: right;
-  min-width: 600px;
-  min-height: 600px;
-  flex-shrink: 0;
-  user-select: none;
-`;
-
-const DotImageBox = styled(Box)`
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  background-image: url(${DotImage});
-  background-size: contain;
-  background-repeat: no-repeat;
-  min-width: 289px;
-  min-height: 289px;
-  user-select: none;
-`;
 
 const AboutSection: React.FC = () => {
+  const isMediumScreen = useMediaQuery("(max-width:1200px)");
+  const isSmallScreen = useMediaQuery("(max-width:768px)");
+  const isExtraSmallScreen = useMediaQuery("(max-width:600px)");
+  const isNarrowScreen = useMediaQuery("(max-width:1300px)");
+
+  // Определяем vh в зависимости от размеров экрана
+  const sectionHeight = isExtraSmallScreen
+    ? "50vh" // Очень маленькие экраны
+    : isSmallScreen
+      ? "60vh" // Маленькие экраны
+      : isMediumScreen
+        ? "70vh" // Средние экраны
+        : "100vh"; // Широкие экраны
+
+  const sectionPadding = isExtraSmallScreen
+    ? "96px 16px" // Очень маленькие экраны
+    : isSmallScreen
+      ? "96px 24px" // Маленькие экраны
+      : isMediumScreen
+        ? "128px 48px" // Средние экраны
+        : "192px 0"; // Широкие экраны
+
   return (
-    <Container>
-      <Title>Одно пространство — множество решений</Title>
-      <Subtitle>Платформа, которая подстраивается под вас</Subtitle>
-      <ContentWrapper>
-        <TextBox>
-          <TextContent>
+    <Box
+      sx={{
+        width: "100%",
+        position: "relative",
+        overflow: "hidden",
+        padding: sectionPadding,
+        minHeight: sectionHeight,
+      }}
+    >
+      {/* Графическое изображение */}
+      <Box
+        sx={{
+          position: "absolute",
+          bottom: "10%",
+          right: 0,
+          backgroundImage: `url(${BackgroundImage})`,
+          backgroundSize: "contain",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "right center",
+          width: isNarrowScreen ? "0" : isSmallScreen ? "300px" : "800px",
+          height: isNarrowScreen ? "0" : isSmallScreen ? "300px" : "800px",
+          zIndex: 0,
+          display: isNarrowScreen ? "none" : "block",
+        }}
+      />
+      {/* Заголовок */}
+      <Typography
+        variant={isSmallScreen ? "h4" : "h2"}
+        sx={{
+          fontFamily: "Montserrat Alternates, sans-serif",
+          fontWeight: 600,
+          lineHeight: isSmallScreen ? "36px" : "62px",
+          color: "#3F2274",
+          textAlign: "center",
+          marginBottom: isSmallScreen ? "16px" : "24px",
+          zIndex: 2,
+          position: "relative",
+        }}
+      >
+        Одно пространство — множество решений
+      </Typography>
+      {/* Подзаголовок */}
+      <Typography
+        variant={isSmallScreen ? "body1" : "h6"}
+        sx={{
+          fontFamily: "Montserrat Alternates, sans-serif",
+          fontWeight: 400,
+          lineHeight: isSmallScreen ? "24px" : "31px",
+          color: "#6F4BAF",
+          textAlign: "center",
+          marginBottom: isSmallScreen ? "24px" : "96px",
+          zIndex: 2,
+          position: "relative",
+        }}
+      >
+        Платформа, которая подстраивается под вас
+      </Typography>
+      {/* Контент (текстовый блок) */}
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: isSmallScreen || isNarrowScreen ? "column" : "row",
+          alignItems: isNarrowScreen ? "center" : "flex-start",
+          justifyContent: isNarrowScreen ? "center" : "space-between",
+          width: "100%",
+          margin: "0 auto",
+          position: "relative",
+          maxWidth: "1440px",
+          zIndex: 2,
+        }}
+      >
+        <Box
+          sx={{
+            flex: 1,
+            maxWidth: isSmallScreen ? "100%" : "516px",
+            background: "#F7EEF6B2",
+            borderRadius: "24px",
+            padding: isSmallScreen ? "24px" : "48px",
+            boxShadow: "0 4px 4px rgba(0, 0, 0, 0.25)",
+            textAlign: "left",
+          }}
+        >
+          <Typography
+            variant="body2"
+            sx={{
+              fontFamily: "Roboto, sans-serif",
+              fontSize: "16px",
+              fontWeight: 400,
+              lineHeight: "1.5",
+              color: "#4C2E88",
+            }}
+          >
             U-Morphe — это не просто платформа для коммуникации, а ваш
             персонализированный инструмент для создания идеального рабочего
             пространства. Наша CRM-система подходит как для небольших команд,
             так и для крупных сообществ. Вы можете настроить всё: управление
             доступом, процесс регистрации и набор функций, включая интеграцию
             сторонних решений.
-            <br />
-            <br />
-            Ищете систему с гибким управлением пользователями? Не проблема! Наши
-            модули расширяют функционал, позволяя решать конкретные задачи
-            вашего сообщества.
             <br />
             <br />
             Мы акцентируем внимание на удобстве, безопасности и
@@ -123,18 +133,11 @@ const AboutSection: React.FC = () => {
             <br />
             Настройте U-Morphe в соответствии с вашими требованиями. Благодаря
             интуитивно понятному интерфейсу обучение вашей команды станет
-            быстрым и простым. Каждый участник сможет быстро освоить необходимые
-            функции и начать активно использовать платформу.
-            <br />
-            <br />
-            Откройте новые горизонты для совместной работы и сделайте каждую
-            встречу продуктивной!
-          </TextContent>
-        </TextBox>
-        <ImageBox />
-        <DotImageBox />
-      </ContentWrapper>
-    </Container>
+            быстрым и простым.
+          </Typography>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 
