@@ -1,17 +1,32 @@
 import React from "react";
-import {
-  Box,
-  Button,
-  IconButton,
-  Paper,
-  Tooltip,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Paper, Tooltip, Typography } from "@mui/material";
 
 import CheckedPurple from "../../../icons/chekedPurple.png";
 import CheckedWhite from "../../../icons/chekedWhite.png";
 import IPurple from "../../../icons/iPurple.png";
 import IWhite from "../../../icons/iWhite.png";
+
+const lightTheme = {
+  backgroundColor: "#F7EEF6",
+  textColor: "#4C2E88",
+  priceColor: "#3F2274",
+  descriptionColor: "#6F4BAF",
+  checkIcon: CheckedPurple,
+  infoIcon: IPurple,
+  buttonBackgroundColor: "#6F4BAF",
+  buttonTextColor: "#FFFFFF",
+};
+
+const purpleTheme = {
+  backgroundColor: "#4C2E88",
+  textColor: "#FFFFFF",
+  priceColor: "#FFFFFF",
+  descriptionColor: "#E5E5E5",
+  checkIcon: CheckedWhite,
+  infoIcon: IWhite,
+  buttonBackgroundColor: "#FFFFFF",
+  buttonTextColor: "#A590C1",
+};
 
 const PricingPlans: React.FC = () => {
   const plans = [
@@ -29,7 +44,6 @@ const PricingPlans: React.FC = () => {
         { text: "Общий диск 10 ГБ" },
         { text: "До 50 участников" },
       ],
-      isHighlighted: false,
     },
     {
       title: "Стандарт",
@@ -45,7 +59,6 @@ const PricingPlans: React.FC = () => {
         { text: "Общий диск 50 ГБ" },
         { text: "До 100 участников" },
       ],
-      isHighlighted: false,
     },
     {
       title: "Премиум",
@@ -63,7 +76,6 @@ const PricingPlans: React.FC = () => {
         { text: "Настройки пользователя", info: "Подробности о настройках" },
         { text: "Проверка сервисов", info: "Подробности о проверке" },
       ],
-      isHighlighted: true,
     },
   ];
 
@@ -117,14 +129,18 @@ const PricingPlans: React.FC = () => {
               width: "360px",
               padding: "24px",
               borderRadius: "16px",
-              backgroundColor: plan.isHighlighted ? "#A590C1" : "#F7EEF6",
+              backgroundColor: lightTheme.backgroundColor,
               textAlign: "center",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
               boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+              transition: "all 0.3s",
               "&:hover": {
-                backgroundColor: plan.isHighlighted ? "#9268AC" : "#E3D4E8",
+                backgroundColor: purpleTheme.backgroundColor,
+              },
+              "&:hover *": {
+                color: purpleTheme.textColor,
               },
             }}
           >
@@ -135,8 +151,8 @@ const PricingPlans: React.FC = () => {
                   fontFamily: "Montserrat Alternates, sans-serif",
                   fontWeight: 600,
                   fontSize: "18px",
-                  color: plan.isHighlighted ? "#FFFFFF" : "#4C2E88",
-                  marginBottom: "8px",
+                  color: lightTheme.textColor,
+                  transition: "color 0.3s",
                 }}
               >
                 {plan.title}
@@ -147,8 +163,8 @@ const PricingPlans: React.FC = () => {
                   fontFamily: "Roboto, sans-serif",
                   fontWeight: 700,
                   fontSize: "24px",
-                  color: plan.isHighlighted ? "#FFFFFF" : "#3F2274",
-                  marginBottom: "8px",
+                  color: lightTheme.priceColor,
+                  transition: "color 0.3s",
                 }}
               >
                 {plan.price}
@@ -159,8 +175,8 @@ const PricingPlans: React.FC = () => {
                   fontFamily: "Roboto, sans-serif",
                   fontWeight: 400,
                   fontSize: "14px",
-                  color: plan.isHighlighted ? "#E5E5E5" : "#6F4BAF",
-                  marginBottom: "16px",
+                  color: lightTheme.descriptionColor,
+                  transition: "color 0.3s",
                 }}
               >
                 {plan.description}
@@ -172,21 +188,29 @@ const PricingPlans: React.FC = () => {
                     sx={{
                       display: "flex",
                       alignItems: "center",
-                      justifyContent: "space-between",
                       gap: "12px",
                       marginBottom: "12px",
+                      transition: "color 0.3s",
                     }}
                   >
                     <Box
                       component="img"
-                      src={plan.isHighlighted ? CheckedWhite : CheckedPurple}
+                      src={
+                        purpleTheme.backgroundColor
+                          ? lightTheme.checkIcon
+                          : purpleTheme.checkIcon
+                      }
+                      sx={{
+                        width: "16px",
+                        height: "16px",
+                      }}
                     />
                     <Typography
                       sx={{
                         fontFamily: "Roboto, sans-serif",
                         fontSize: "14px",
                         fontWeight: 400,
-                        color: plan.isHighlighted ? "#FFFFFF" : "#4C2E88",
+                        color: lightTheme.textColor,
                         flex: 1,
                       }}
                     >
@@ -194,12 +218,18 @@ const PricingPlans: React.FC = () => {
                     </Typography>
                     {feature.info && (
                       <Tooltip title={feature.info} arrow>
-                        <IconButton size="small">
-                          <Box
-                            component="img"
-                            src={plan.isHighlighted ? IWhite : IPurple}
-                          />
-                        </IconButton>
+                        <Box
+                          component="img"
+                          src={
+                            purpleTheme.backgroundColor
+                              ? purpleTheme.infoIcon
+                              : lightTheme.infoIcon
+                          }
+                          sx={{
+                            width: "16px",
+                            height: "16px",
+                          }}
+                        />
                       </Tooltip>
                     )}
                   </Box>
@@ -210,13 +240,18 @@ const PricingPlans: React.FC = () => {
               <Button
                 variant="contained"
                 sx={{
-                  backgroundColor: plan.isHighlighted ? "#FFFFFF" : "#6F4BAF",
-                  color: plan.isHighlighted ? "#A590C1" : "#FFFFFF",
+                  backgroundColor: lightTheme.buttonBackgroundColor,
+                  color: lightTheme.buttonTextColor,
                   fontFamily: "Montserrat Alternates, sans-serif",
                   fontWeight: 600,
                   borderRadius: "24px",
                   padding: "8px 16px",
                   textTransform: "none",
+                  transition: "background-color 0.3s, color 0.3s",
+                  "&:hover": {
+                    backgroundColor: purpleTheme.buttonBackgroundColor,
+                    color: purpleTheme.buttonTextColor,
+                  },
                 }}
               >
                 Подключить
