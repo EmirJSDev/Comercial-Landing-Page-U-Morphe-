@@ -1,8 +1,8 @@
 import React from "react";
 import { Box, Button, Paper, Tooltip, Typography } from "@mui/material";
 
-import { ReactComponent as CheckIcon } from "../../../icons/checked.svg";
-import { ReactComponent as InfoIcon } from "../../../icons/info.svg";
+import { ReactComponent as CheckIcon } from "../../assets/icons/checked.svg";
+import { ReactComponent as InfoIcon } from "../../assets/icons/info.svg";
 
 const lightTheme = {
   backgroundColor: "#F7EEF6",

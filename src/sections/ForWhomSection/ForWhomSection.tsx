@@ -1,10 +1,10 @@
 import React from "react";
 import { Box, Paper, Typography } from "@mui/material";
-import useMediaQuery from "../../../Themes/MediaQuery/useMediaQuery";
-import BusinessImage from "../../../images/business.png";
-import BlogImage from "../../../images/blog.png";
-import CommunityImage from "../../../images/community.png";
-import NewsImage from "../../../images/news.png";
+import useMediaQuery from "../../hooks/useMediaQuery";
+import BusinessImage from "../../assets/images/business.png";
+import BlogImage from "../../assets/images/blog.png";
+import CommunityImage from "../../assets/images/community.png";
+import NewsImage from "../../assets/images/news.png";
 
 const items = [
   {

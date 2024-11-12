@@ -1,8 +1,8 @@
 import React from "react";
 import { Box, Button, Typography } from "@mui/material";
-import BackgroundHero from "../../../images/BackgroundHero.png";
-import BackgroundHeroEL from "../../../images/BackgroundHeroEL.png";
-import useMediaQuery from "../../../Themes/MediaQuery/useMediaQuery";
+import BackgroundHero from "../../assets/images/BackgroundHero.png";
+import BackgroundHeroEL from "../../assets/images/BackgroundHeroEL.png";
+import useMediaQuery from "../../hooks/useMediaQuery";
 
 const HeroSection: React.FC = () => {
   const {

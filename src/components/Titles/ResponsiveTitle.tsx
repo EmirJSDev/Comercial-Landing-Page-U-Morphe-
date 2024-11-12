@@ -1,6 +1,6 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
-import useMediaQuery from "../MediaQuery/useMediaQuery";
+import useMediaQuery from "../../hooks/useMediaQuery";
 
 interface ResponsiveTitleProps {
   children: React.ReactNode;

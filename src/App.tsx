@@ -1,12 +1,12 @@
 import React from "react";
 import { createGlobalStyle } from "styled-components";
-import Header from "./layers/Header/Header";
-import HeroSection from "./layers/sections/HeroSection/HeroSection";
-import AboutSection from "./layers/sections/AboutSection/AboutSection";
-import FeaturesSection from "./layers/sections/FeaturesSection/FeaturesSection";
-import ForWhomSection from "./layers/sections/ForWhomSection/ForWhomSection";
-import IntuitiveUISection from "./layers/sections/IntuitiveUISection/IntuitiveUISection";
-import PricingPlans from "./layers/sections/PricingPlans/PricingPlans";
+import Header from "./components/Header/Header";
+import HeroSection from "./sections/HeroSection/HeroSection";
+import AboutSection from "./sections/AboutSection/AboutSection";
+import FeaturesSection from "./sections/FeaturesSection/FeaturesSection";
+import ForWhomSection from "./sections/ForWhomSection/ForWhomSection";
+import IntuitiveUISection from "./sections/IntuitiveUISection/IntuitiveUISection";
+import PricingPlans from "./sections/PricingPlans/PricingPlans";
 import { Box } from "@mui/material";
 
 const GlobalStyle = createGlobalStyle`

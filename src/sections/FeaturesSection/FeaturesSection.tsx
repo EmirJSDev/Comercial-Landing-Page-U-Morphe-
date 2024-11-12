@@ -1,66 +1,67 @@
 import React from "react";
+import type { SxProps } from "@mui/material";
 import { Box, Paper, Typography } from "@mui/material";
-import ResponsiveTitle from "../../../Themes/Titles/ResponsiveTitle";
-import ResponsiveSubTitle from "../../../Themes/Titles/ResponsiveSubTitle";
-import CalendarIcon from "../../../icons/CalendarToday.jpg";
-import ChatIcon from "../../../icons/Chat.jpg";
-import VideoIcon from "../../../icons/VideoCall.jpg";
-import DesktopIcon from "../../../icons/DesktopWindows.jpg";
-import AssignmentIcon from "../../../icons/Assignment.jpg";
-import SecurityIcon from "../../../icons/Security.jpg";
+import ResponsiveTitle from "../../components/Titles/ResponsiveTitle";
+import ResponsiveSubTitle from "../../components/Titles/ResponsiveSubTitle";
+import CalendarIcon from "../../assets/icons/CalendarToday.jpg";
+import ChatIcon from "../../assets/icons/Chat.jpg";
+import VideoIcon from "../../assets/icons/VideoCall.jpg";
+import DesktopIcon from "../../assets/icons/DesktopWindows.jpg";
+import AssignmentIcon from "../../assets/icons/Assignment.jpg";
+import SecurityIcon from "../../assets/icons/Security.jpg";
+
+const features = [
+  {
+    icon: CalendarIcon,
+    title: "Календарь",
+    description:
+      "Инструмент для планирования встреч, мероприятий и совместной работы с возможностью синхронизации с внешними календарями.",
+  },
+  {
+    icon: ChatIcon,
+    title: "Мессенджер",
+    description:
+      "Мгновенный чат для общения с коллегами и членами сообщества, поддерживающий отправку файлов, ссылки и реакции.",
+  },
+  {
+    icon: VideoIcon,
+    title: "Видеоконференции",
+    description:
+      "Интегрированная платформа для видеозвонков и вебинаров с функциями совместного использования экрана и записи сессий.",
+  },
+  {
+    icon: DesktopIcon,
+    title: "Виртуальный офис",
+    description:
+      "Позволяет сотрудникам удобно резервировать свободные столы и кабинеты, что способствует повышению эффективности работы.",
+  },
+  {
+    icon: AssignmentIcon,
+    title: "Планирование",
+    description:
+      "Система для отслеживания и распределения задач между пользователями с возможностью назначения ролей и контроля сроков.",
+  },
+  {
+    icon: SecurityIcon,
+    title: "Система ролей",
+    description:
+      "Гибкая система управления правами доступа, которая позволяет назначать роли и разграничивать доступ к различным функциям и контенту.",
+  },
+];
+
+const styleBoxWrapper: SxProps = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  textAlign: "center",
+  paddingBottom: "192px",
+  maxWidth: "1440px",
+  margin: "0 auto",
+};
 
 const FeaturesSection: React.FC = () => {
-  const features = [
-    {
-      icon: CalendarIcon,
-      title: "Календарь",
-      description:
-        "Инструмент для планирования встреч, мероприятий и совместной работы с возможностью синхронизации с внешними календарями.",
-    },
-    {
-      icon: ChatIcon,
-      title: "Мессенджер",
-      description:
-        "Мгновенный чат для общения с коллегами и членами сообщества, поддерживающий отправку файлов, ссылки и реакции.",
-    },
-    {
-      icon: VideoIcon,
-      title: "Видеоконференции",
-      description:
-        "Интегрированная платформа для видеозвонков и вебинаров с функциями совместного использования экрана и записи сессий.",
-    },
-    {
-      icon: DesktopIcon,
-      title: "Виртуальный офис",
-      description:
-        "Позволяет сотрудникам удобно резервировать свободные столы и кабинеты, что способствует повышению эффективности работы.",
-    },
-    {
-      icon: AssignmentIcon,
-      title: "Планирование",
-      description:
-        "Система для отслеживания и распределения задач между пользователями с возможностью назначения ролей и контроля сроков.",
-    },
-    {
-      icon: SecurityIcon,
-      title: "Система ролей",
-      description:
-        "Гибкая система управления правами доступа, которая позволяет назначать роли и разграничивать доступ к различным функциям и контенту.",
-    },
-  ];
-
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        textAlign: "center",
-        paddingBottom: "192px",
-        maxWidth: "1440px",
-        margin: "0 auto",
-      }}
-    >
+    <Box sx={styleBoxWrapper}>
       {/* Используем темы для заголовка секции */}
       <ResponsiveTitle>Функции и интеграции</ResponsiveTitle>
       {/* Используем темы для подзаголовка секции */}

@@ -1,9 +1,9 @@
 import React from "react";
 import { Box } from "@mui/material";
-import ResponsiveTitle from "../../../Themes/Titles/ResponsiveTitle";
-import ResponsiveSubTitle from "../../../Themes/Titles/ResponsiveSubTitle";
-import useMediaQuery from "../../../Themes/MediaQuery/useMediaQuery";
-import BackgroundImage from "../../../images/about-image.png";
+import ResponsiveTitle from "../../components/Titles/ResponsiveTitle";
+import ResponsiveSubTitle from "../../components/Titles/ResponsiveSubTitle";
+import useMediaQuery from "../../hooks/useMediaQuery";
+import BackgroundImage from "../../assets/images/about-image.png";
 
 const AboutSection: React.FC = () => {
   const {

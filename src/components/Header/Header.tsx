@@ -16,7 +16,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import SendIcon from "@mui/icons-material/Send";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import useMediaQuery from "../../Themes/MediaQuery/useMediaQuery"; // Тема Material-UI
+import useMediaQuery from "../../hooks/useMediaQuery"; // Тема Material-UI
 
 // Тема Material-UI
 const theme = createTheme({
