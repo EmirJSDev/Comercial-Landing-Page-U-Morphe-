@@ -6,6 +6,7 @@ import AboutSection from "./layers/sections/AboutSection/AboutSection";
 import FeaturesSection from "./layers/sections/FeaturesSection/FeaturesSection";
 import ForWhomSection from "./layers/sections/ForWhomSection/ForWhomSection";
 import IntuitiveUISection from "./layers/sections/IntuitiveUISection/IntuitiveUISection";
+import PricingPlans from "./layers/sections/PricingPlans/PricingPlans";
 import { Box } from "@mui/material";
 
 const GlobalStyle = createGlobalStyle`
@@ -63,6 +64,7 @@ const App: React.FC = () => {
         <FeaturesSection />
         <ForWhomSection />
         <IntuitiveUISection />
+        <PricingPlans />
       </Box>
     </>
   );

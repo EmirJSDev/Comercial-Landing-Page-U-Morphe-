@@ -1,5 +1,7 @@
 import React from "react";
 import { Box, Paper, Typography } from "@mui/material";
+import ResponsiveTitle from "../../../Themes/Titles/ResponsiveTitle";
+import ResponsiveSubTitle from "../../../Themes/Titles/ResponsiveSubTitle";
 import CalendarIcon from "../../../icons/CalendarToday.jpg";
 import ChatIcon from "../../../icons/Chat.jpg";
 import VideoIcon from "../../../icons/VideoCall.jpg";
@@ -59,32 +61,14 @@ const FeaturesSection: React.FC = () => {
         margin: "0 auto",
       }}
     >
-      <Typography
-        variant="h4"
-        sx={{
-          fontFamily: "Montserrat Alternates, sans-serif",
-          fontSize: "48px",
-          fontWeight: 600,
-          color: "#4c2e88",
-          lineHeight: "62px",
-          marginBottom: "62px",
-        }}
-      >
-        Функции и интеграции
-      </Typography>
-      <Typography
-        variant="subtitle1"
-        sx={{
-          fontFamily: "Montserrat Alternates, sans-serif",
-          fontSize: "24px",
-          fontWeight: 400,
-          lineHeight: "31px",
-          color: "#7652b1",
-          marginBottom: "96px",
-        }}
-      >
+      {/* Используем темы для заголовка секции */}
+      <ResponsiveTitle>Функции и интеграции</ResponsiveTitle>
+      {/* Используем темы для подзаголовка секции */}
+      <ResponsiveSubTitle>
         Все задачи решаются в одном пространстве
-      </Typography>
+      </ResponsiveSubTitle>
+
+      {/* Карточки остаются неизменными */}
       <Box
         sx={{
           display: "flex",
@@ -144,6 +128,7 @@ const FeaturesSection: React.FC = () => {
                 style={{ width: "100%", height: "100%" }}
               />
             </Box>
+            {/* Заголовок карточки остался без изменений */}
             <Typography
               variant="h6"
               sx={{
@@ -156,6 +141,7 @@ const FeaturesSection: React.FC = () => {
             >
               {feature.title}
             </Typography>
+            {/* Описание карточки осталось без изменений */}
             <Typography
               variant="body2"
               sx={{

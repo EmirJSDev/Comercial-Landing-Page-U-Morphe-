@@ -1,23 +1,32 @@
 import React from "react";
-import { Box, Button, Typography, useMediaQuery } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import BackgroundHero from "../../../images/BackgroundHero.png";
+import BackgroundHeroEL from "../../../images/BackgroundHeroEL.png";
+import useMediaQuery from "../../../Themes/MediaQuery/useMediaQuery";
 
 const HeroSection: React.FC = () => {
-  const isMediumScreen = useMediaQuery("(max-width:1200px)");
-  const isSmallScreen = useMediaQuery("(max-width:768px)");
-  const isExtraSmallScreen = useMediaQuery("(max-width:480px)");
+  const {
+    isExtraSmall,
+    isSmall,
+    isMedium,
+    isLarge,
+    isExtraLarge,
+    isUltraWide,
+  } = useMediaQuery();
 
   const fontSize = React.useMemo(() => {
-    if (isMediumScreen) return "48px";
-    if (isSmallScreen) return "36px";
+    if (isExtraSmall) return "28px";
+    if (isSmall) return "36px";
+    if (isMedium) return "48px";
     return "72px";
-  }, [isMediumScreen, isSmallScreen]);
+  }, [isExtraSmall, isSmall, isMedium]);
 
   const lineHeight = React.useMemo(() => {
-    if (isMediumScreen) return "64px";
-    if (isSmallScreen) return "48px";
+    if (isExtraSmall) return "36px";
+    if (isSmall) return "48px";
+    if (isMedium) return "64px";
     return "93.6px";
-  }, [isMediumScreen, isSmallScreen]);
+  }, [isExtraSmall, isSmall, isMedium]);
 
   const typographyStyles = {
     fontFamily: "Montserrat Alternates, sans-serif",
@@ -36,27 +45,30 @@ const HeroSection: React.FC = () => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        width: isExtraSmallScreen
-          ? "100%"
-          : isSmallScreen
-            ? "100%"
-            : isMediumScreen
-              ? "100%"
-              : "100%", // Пропорциональное уменьшение ширины
-        minHeight: isExtraSmallScreen
-          ? "30vh"
-          : isSmallScreen
-            ? "40vh"
-            : "100vh", // Пропорциональное уменьшение высоты
-        backgroundImage: `url(${BackgroundHero})`,
-        backgroundSize: isMediumScreen || isSmallScreen ? "contain" : "cover",
+        width: "100%",
+        minHeight: (() => {
+          if (isExtraSmall) return "40vh";
+          if (isSmall) return "60vh";
+          if (isMedium) return "80vh";
+          return "100vh";
+        })(),
+        backgroundImage:
+          isExtraSmall || isSmall || isMedium || isLarge || isExtraLarge
+            ? `url(${BackgroundHero})`
+            : `url(${BackgroundHeroEL})`,
+        backgroundSize:
+          isExtraSmall || isSmall || isMedium || isLarge ? "contain" : "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         textAlign: "center",
         color: themeColors.secondary,
-        margin: "0 auto",
         userSelect: "none",
-        padding: isMediumScreen ? "0 0 20px 0" : "0 0 250px 0",
+        padding: (() => {
+          if (isExtraSmall) return "0 16px";
+          if (isSmall) return "24px 16px";
+          if (isMedium) return "48px 0";
+          return "80px 20px";
+        })(),
       }}
     >
       <Typography
@@ -68,7 +80,11 @@ const HeroSection: React.FC = () => {
           fontWeight: 700,
           lineHeight,
           mb: 2,
-          paddingTop: isMediumScreen ? "100px" : "291px",
+          paddingTop: (() => {
+            if (isExtraSmall) return "80px";
+            if (isSmall) return "100px";
+            return "150px";
+          })(),
         }}
       >
         U - Morphe
@@ -78,11 +94,10 @@ const HeroSection: React.FC = () => {
         component="p"
         sx={{
           ...typographyStyles,
-          fontSize: isSmallScreen ? "18px" : "24px",
+          fontSize: isExtraSmall ? "14px" : isSmall ? "18px" : "24px",
           fontWeight: 600,
-          lineHeight: isSmallScreen ? "24px" : "31.2px",
+          lineHeight: isExtraSmall ? "20px" : isSmall ? "24px" : "31.2px",
           mb: 4,
-          padding: isExtraSmallScreen ? "0 16px" : "0",
         }}
       >
         Все задачи решаются в одной экосистеме.
@@ -90,14 +105,18 @@ const HeroSection: React.FC = () => {
       <Button
         variant="contained"
         sx={{
-          fontFamily: "Roboto, sans-serif",
-          fontSize: isSmallScreen ? "14px" : "16px",
+          fontFamily: "Montserrat Alternates, sans-serif",
+          fontSize: isExtraSmall ? "12px" : isSmall ? "14px" : "16px",
           fontWeight: 400,
           lineHeight: "20.8px",
           color: themeColors.primary,
           backgroundColor: themeColors.secondary,
           textTransform: "none",
-          padding: isSmallScreen ? "8px 20px" : "10px 25px",
+          padding: isExtraSmall
+            ? "6px 16px"
+            : isSmall
+              ? "8px 20px"
+              : "10px 25px",
           borderRadius: "20px",
           transition: "all 0.3s ease",
           boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.2)",

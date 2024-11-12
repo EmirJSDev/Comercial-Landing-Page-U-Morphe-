@@ -1,95 +1,79 @@
 import React from "react";
-import { Box, Typography, useMediaQuery } from "@mui/material";
+import { Box } from "@mui/material";
+import ResponsiveTitle from "../../../Themes/Titles/ResponsiveTitle";
+import ResponsiveSubTitle from "../../../Themes/Titles/ResponsiveSubTitle";
+import useMediaQuery from "../../../Themes/MediaQuery/useMediaQuery";
 import BackgroundImage from "../../../images/about-image.png";
 
 const AboutSection: React.FC = () => {
-  const isMediumScreen = useMediaQuery("(max-width:1200px)");
-  const isSmallScreen = useMediaQuery("(max-width:768px)");
-  const isExtraSmallScreen = useMediaQuery("(max-width:600px)");
-  const isNarrowScreen = useMediaQuery("(max-width:1300px)");
+  const {
+    isExtraSmall,
+    isSmall,
+    isMedium,
+    isLarge,
+    isExtraLarge,
+    isUltraWide,
+  } = useMediaQuery();
 
-  // Определяем vh в зависимости от размеров экрана
-  const sectionHeight = isExtraSmallScreen
-    ? "50vh" // Очень маленькие экраны
-    : isSmallScreen
-      ? "60vh" // Маленькие экраны
-      : isMediumScreen
-        ? "70vh" // Средние экраны
-        : "100vh"; // Широкие экраны
+  const sectionHeight = (() => {
+    if (isExtraSmall) return "50vh";
+    if (isSmall) return "60vh";
+    if (isMedium) return "70vh";
+    if (isLarge || isExtraLarge) return "80vh";
+    return "100vh";
+  })();
 
-  const sectionPadding = isExtraSmallScreen
-    ? "96px 16px" // Очень маленькие экраны
-    : isSmallScreen
-      ? "96px 24px" // Маленькие экраны
-      : isMediumScreen
-        ? "128px 48px" // Средние экраны
-        : "192px 0"; // Широкие экраны
+  const sectionPadding = (() => {
+    if (isExtraSmall) return "96px 16px";
+    if (isSmall) return "96px 24px";
+    if (isMedium) return "128px 48px";
+    if (isLarge || isExtraLarge) return "160px 64px";
+    return "192px 0";
+  })();
+
+  const imageSize = (() => {
+    if (isExtraSmall || isSmall) return "300px";
+    if (isMedium) return "600px";
+    if (isLarge) return "700px";
+    if (isExtraLarge) return "800px";
+    return "900px";
+  })();
 
   return (
     <Box
       sx={{
         width: "100%",
         position: "relative",
-        overflow: "hidden",
         padding: sectionPadding,
         minHeight: sectionHeight,
       }}
     >
-      {/* Графическое изображение */}
       <Box
         sx={{
           position: "absolute",
-          bottom: "10%",
+          bottom: 0,
           right: 0,
           backgroundImage: `url(${BackgroundImage})`,
           backgroundSize: "contain",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "right center",
-          width: isNarrowScreen ? "0" : isSmallScreen ? "300px" : "800px",
-          height: isNarrowScreen ? "0" : isSmallScreen ? "300px" : "800px",
+          width: isUltraWide ? imageSize : "0",
+          height: isUltraWide ? imageSize : "0",
           zIndex: 0,
-          display: isNarrowScreen ? "none" : "block",
+          display: isLarge || isExtraLarge || isUltraWide ? "block" : "none",
         }}
       />
-      {/* Заголовок */}
-      <Typography
-        variant={isSmallScreen ? "h4" : "h2"}
-        sx={{
-          fontFamily: "Montserrat Alternates, sans-serif",
-          fontWeight: 600,
-          lineHeight: isSmallScreen ? "36px" : "62px",
-          color: "#3F2274",
-          textAlign: "center",
-          marginBottom: isSmallScreen ? "16px" : "24px",
-          zIndex: 2,
-          position: "relative",
-        }}
-      >
-        Одно пространство — множество решений
-      </Typography>
-      {/* Подзаголовок */}
-      <Typography
-        variant={isSmallScreen ? "body1" : "h6"}
-        sx={{
-          fontFamily: "Montserrat Alternates, sans-serif",
-          fontWeight: 400,
-          lineHeight: isSmallScreen ? "24px" : "31px",
-          color: "#6F4BAF",
-          textAlign: "center",
-          marginBottom: isSmallScreen ? "24px" : "96px",
-          zIndex: 2,
-          position: "relative",
-        }}
-      >
+      <ResponsiveTitle>Одно пространство — множество решений</ResponsiveTitle>
+      <ResponsiveSubTitle>
         Платформа, которая подстраивается под вас
-      </Typography>
-      {/* Контент (текстовый блок) */}
+      </ResponsiveSubTitle>
       <Box
         sx={{
           display: "flex",
-          flexDirection: isSmallScreen || isNarrowScreen ? "column" : "row",
-          alignItems: isNarrowScreen ? "center" : "flex-start",
-          justifyContent: isNarrowScreen ? "center" : "space-between",
+          flexDirection:
+            isSmall || isMedium || isLarge || isExtraLarge ? "column" : "row",
+          alignItems: isSmall || isMedium || isLarge ? "center" : "flex-start",
+          justifyContent: "space-between",
           width: "100%",
           margin: "0 auto",
           position: "relative",
@@ -100,16 +84,16 @@ const AboutSection: React.FC = () => {
         <Box
           sx={{
             flex: 1,
-            maxWidth: isSmallScreen ? "100%" : "516px",
+            maxWidth: isSmall ? "100%" : "516px",
             background: "#F7EEF6B2",
             borderRadius: "24px",
-            padding: isSmallScreen ? "24px" : "48px",
+            padding: isSmall ? "24px" : "48px",
             boxShadow: "0 4px 4px rgba(0, 0, 0, 0.25)",
             textAlign: "left",
           }}
         >
-          <Typography
-            variant="body2"
+          <Box
+            component="p"
             sx={{
               fontFamily: "Roboto, sans-serif",
               fontSize: "16px",
@@ -134,7 +118,11 @@ const AboutSection: React.FC = () => {
             Настройте U-Morphe в соответствии с вашими требованиями. Благодаря
             интуитивно понятному интерфейсу обучение вашей команды станет
             быстрым и простым.
-          </Typography>
+            <br />
+            <br />
+            Откройте новые горизонты для совместной работы и сделайте каждую
+            встречу продуктивной!
+          </Box>
         </Box>
       </Box>
     </Box>

@@ -1,12 +1,6 @@
 import React from "react";
-import {
-  Box,
-  Card,
-  CardContent,
-  CardMedia,
-  Typography,
-  useMediaQuery,
-} from "@mui/material";
+import { Box, Paper, Typography } from "@mui/material";
+import useMediaQuery from "../../../Themes/MediaQuery/useMediaQuery";
 import BusinessImage from "../../../images/business.png";
 import BlogImage from "../../../images/blog.png";
 import CommunityImage from "../../../images/community.png";
@@ -40,33 +34,7 @@ const items = [
 ];
 
 const ForWhomSection: React.FC = () => {
-  // Медиазапросы
-  const isLargeScreen = useMediaQuery("(min-width:1200px)");
-  const isMediumScreen = useMediaQuery(
-    "(max-width:1199px) and (min-width:900px)",
-  );
-  const isSmallScreen = useMediaQuery(
-    "(max-width:899px) and (min-width:600px)",
-  );
-  const isExtraSmallScreen = useMediaQuery("(max-width:599px)");
-
-  // Адаптивные размеры карточек
-  const cardSizes = isLargeScreen
-    ? { width: "504px", height: "552px", imageHeight: "312px" }
-    : isMediumScreen
-      ? { width: "420px", height: "460px", imageHeight: "260px" }
-      : isSmallScreen
-        ? { width: "360px", height: "400px", imageHeight: "220px" }
-        : { width: "280px", height: "320px", imageHeight: "180px" }; // Extra Small Screen
-
-  // Адаптивные отступы секции
-  const sectionPadding = isLargeScreen
-    ? "48px 24px"
-    : isMediumScreen
-      ? "40px 20px"
-      : isSmallScreen
-        ? "32px 16px"
-        : "24px 12px";
+  const { isExtraSmall, isSmall } = useMediaQuery();
 
   return (
     <Box
@@ -74,32 +42,30 @@ const ForWhomSection: React.FC = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        padding: sectionPadding,
         textAlign: "center",
-        maxWidth: "1440px",
+        padding: "48px 24px",
+        maxWidth: "1200px",
         margin: "0 auto",
       }}
     >
-      {/* Заголовок */}
       <Typography
         variant="h4"
         sx={{
           fontFamily: "Montserrat Alternates, sans-serif",
-          fontSize: isSmallScreen || isExtraSmallScreen ? "32px" : "48px",
+          fontSize: "48px",
           fontWeight: 600,
           color: "#4c2e88",
-          marginBottom: "16px",
+          lineHeight: "62px",
+          marginBottom: "32px",
         }}
       >
         Кому будет полезно
       </Typography>
-
-      {/* Подзаголовок */}
       <Typography
         variant="subtitle1"
         sx={{
           fontFamily: "Montserrat Alternates, sans-serif",
-          fontSize: isSmallScreen || isExtraSmallScreen ? "18px" : "24px",
+          fontSize: "24px",
           fontWeight: 400,
           color: "#7652b1",
           marginBottom: "48px",
@@ -108,8 +74,6 @@ const ForWhomSection: React.FC = () => {
         Наше приложение идеально подойдет вам благодаря своей гибкости и
         множеству функций
       </Typography>
-
-      {/* Карточки */}
       <Box
         sx={{
           display: "flex",
@@ -120,73 +84,59 @@ const ForWhomSection: React.FC = () => {
         }}
       >
         {items.map((item, index) => (
-          <Card
+          <Paper
             key={index}
+            elevation={3}
             sx={{
-              maxWidth: cardSizes.width,
-              minWidth: cardSizes.width,
-              maxHeight: cardSizes.height,
-              minHeight: cardSizes.height,
-              borderRadius: "24px",
-              boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
-              overflow: "hidden",
-              backgroundColor: "#F7EEF6B2",
-              padding: "24px",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "32px",
+              borderRadius: "16px",
+              backgroundColor: "#f7eef6",
+              textAlign: "center",
+              minWidth: "360px",
+              maxWidth: "360px",
+              minHeight: "380px",
+              maxHeight: "380px",
+              flex: "1 1 calc(50% - 24px)", // 2 карточки в ряд
+              "@media (max-width:768px)": {
+                flex: "1 1 100%", // 1 карточка в ряд
+              },
             }}
           >
-            <CardMedia
-              component="img"
+            <img
+              src={item.image}
               alt={item.title}
-              image={item.image}
-              sx={{
-                borderRadius: "24px 24px 0 0",
-                objectFit: "cover",
-                width: "100%",
-                maxHeight: cardSizes.imageHeight,
-                minHeight: cardSizes.imageHeight,
+              style={{
+                marginBottom: "16px",
               }}
             />
-            <CardContent
+            <Typography
+              variant="h6"
               sx={{
-                padding: "16px",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                wordWrap: "break-word",
-                overflowWrap: "break-word",
+                fontFamily: "Montserrat Alternates, sans-serif",
+                fontSize: isSmall || isExtraSmall ? "18px" : "20px",
+                fontWeight: 600,
+                color: "#3f2274",
+                marginBottom: "8px",
               }}
             >
-              <Typography
-                variant="h6"
-                sx={{
-                  fontFamily: "Montserrat Alternates, sans-serif",
-                  fontSize:
-                    isSmallScreen || isExtraSmallScreen ? "16px" : "20px",
-                  fontWeight: 600,
-                  color: "#3f2274",
-                  marginBottom: "16px",
-                }}
-              >
-                {item.title}
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{
-                  fontFamily: "Roboto, sans-serif",
-                  fontSize:
-                    isSmallScreen || isExtraSmallScreen ? "14px" : "16px",
-                  fontWeight: 400,
-                  color: "#4c2e88",
-                  lineHeight: "24px",
-                  textAlign: "center",
-                  maxWidth: "90%", // Ограничение ширины текста
-                }}
-              >
-                {item.description}
-              </Typography>
-            </CardContent>
-          </Card>
+              {item.title}
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                fontFamily: "Roboto, sans-serif",
+                fontSize: "14px",
+                fontWeight: 400,
+                color: "#4c2e88",
+              }}
+            >
+              {item.description}
+            </Typography>
+          </Paper>
         ))}
       </Box>
     </Box>
