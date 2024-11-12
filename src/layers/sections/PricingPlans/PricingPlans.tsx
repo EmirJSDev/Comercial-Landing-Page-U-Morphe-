@@ -1,20 +1,17 @@
 import React from "react";
 import { Box, Button, Paper, Tooltip, Typography } from "@mui/material";
 
-import CheckedPurple from "../../../icons/chekedPurple.png";
-import CheckedWhite from "../../../icons/chekedWhite.png";
-import IPurple from "../../../icons/iPurple.png";
-import IWhite from "../../../icons/iWhite.png";
+import { ReactComponent as CheckIcon } from "../../../icons/checked.svg";
+import { ReactComponent as InfoIcon } from "../../../icons/info.svg";
 
 const lightTheme = {
   backgroundColor: "#F7EEF6",
   textColor: "#4C2E88",
   priceColor: "#3F2274",
   descriptionColor: "#6F4BAF",
-  checkIcon: CheckedPurple,
-  infoIcon: IPurple,
   buttonBackgroundColor: "#6F4BAF",
   buttonTextColor: "#FFFFFF",
+  iconColor: "#4C2E88", // Фиолетовый
 };
 
 const purpleTheme = {
@@ -22,10 +19,9 @@ const purpleTheme = {
   textColor: "#FFFFFF",
   priceColor: "#FFFFFF",
   descriptionColor: "#E5E5E5",
-  checkIcon: CheckedWhite,
-  infoIcon: IWhite,
   buttonBackgroundColor: "#FFFFFF",
   buttonTextColor: "#A590C1",
+  iconColor: "#FFFFFF", // Белый
 };
 
 const PricingPlans: React.FC = () => {
@@ -138,9 +134,9 @@ const PricingPlans: React.FC = () => {
               transition: "all 0.3s",
               "&:hover": {
                 backgroundColor: purpleTheme.backgroundColor,
-              },
-              "&:hover *": {
-                color: purpleTheme.textColor,
+                "& *": {
+                  color: purpleTheme.textColor,
+                },
               },
             }}
           >
@@ -152,7 +148,6 @@ const PricingPlans: React.FC = () => {
                   fontWeight: 600,
                   fontSize: "18px",
                   color: lightTheme.textColor,
-                  transition: "color 0.3s",
                 }}
               >
                 {plan.title}
@@ -164,7 +159,6 @@ const PricingPlans: React.FC = () => {
                   fontWeight: 700,
                   fontSize: "24px",
                   color: lightTheme.priceColor,
-                  transition: "color 0.3s",
                 }}
               >
                 {plan.price}
@@ -176,7 +170,6 @@ const PricingPlans: React.FC = () => {
                   fontWeight: 400,
                   fontSize: "14px",
                   color: lightTheme.descriptionColor,
-                  transition: "color 0.3s",
                 }}
               >
                 {plan.description}
@@ -190,19 +183,16 @@ const PricingPlans: React.FC = () => {
                       alignItems: "center",
                       gap: "12px",
                       marginBottom: "12px",
-                      transition: "color 0.3s",
+                      color: purpleTheme.backgroundColor
+                        ? lightTheme.iconColor
+                        : purpleTheme.iconColor,
                     }}
                   >
-                    <Box
-                      component="img"
-                      src={
-                        purpleTheme.backgroundColor
-                          ? lightTheme.checkIcon
-                          : purpleTheme.checkIcon
-                      }
-                      sx={{
+                    <CheckIcon
+                      style={{
                         width: "16px",
                         height: "16px",
+                        color: "currentColor",
                       }}
                     />
                     <Typography
@@ -210,7 +200,6 @@ const PricingPlans: React.FC = () => {
                         fontFamily: "Roboto, sans-serif",
                         fontSize: "14px",
                         fontWeight: 400,
-                        color: lightTheme.textColor,
                         flex: 1,
                       }}
                     >
@@ -218,16 +207,11 @@ const PricingPlans: React.FC = () => {
                     </Typography>
                     {feature.info && (
                       <Tooltip title={feature.info} arrow>
-                        <Box
-                          component="img"
-                          src={
-                            purpleTheme.backgroundColor
-                              ? purpleTheme.infoIcon
-                              : lightTheme.infoIcon
-                          }
-                          sx={{
+                        <InfoIcon
+                          style={{
                             width: "16px",
                             height: "16px",
+                            color: "currentColor",
                           }}
                         />
                       </Tooltip>
@@ -247,11 +231,6 @@ const PricingPlans: React.FC = () => {
                   borderRadius: "24px",
                   padding: "8px 16px",
                   textTransform: "none",
-                  transition: "background-color 0.3s, color 0.3s",
-                  "&:hover": {
-                    backgroundColor: purpleTheme.buttonBackgroundColor,
-                    color: purpleTheme.buttonTextColor,
-                  },
                 }}
               >
                 Подключить
